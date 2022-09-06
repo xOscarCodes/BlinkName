@@ -11,12 +11,13 @@ typedef struct
   String morse;
 } dict;
 
+// Contains morse code associated with alphabets
 const dict code[]{{"a", ".-"}, {"b", "-..."}, {"c", "-.-."}, {"d", "-.."}, {"e", "."}, {"f", "..-."}, {"g", "--."}, {"h", "...."}, {"i", ".."}, {"j", ".---"}, {"k", "-.-"}, {"l", ".-.."}, {"m", "--"}, {"n", "-."}, {"o", "---"}, {"p", ".--."}, {"q", "--.-"}, {"r", ".-."}, {"s", "..."}, {"t", "-"}, {"u", "..-"}, {"v", "...-"}, {"w", ".--"}, {"x", "-..-"}, {"y", "-.--"}, {"z", "--.."}};
 
 void setup()
 {
-  pinMode(led_pin, OUTPUT);
-  String names = "charanpreet";
+  pinMode(led_pin, OUTPUT);       // Setting 12 number pin to output
+  String names = "charanpreet";   // Name you want to blink
   blink_name(names);
   digitalWrite(led_pin, LOW);
 }
@@ -26,6 +27,12 @@ void loop()
 
 }
 
+/**
+ * @brief Function to generate morse code of a particular name 
+ * 
+ * @param name 
+ * @return String 
+ */
 String generate_morse(String name)
 {
   String morse_code;
@@ -44,6 +51,11 @@ String generate_morse(String name)
   return morse_code;
 }
 
+/**
+ * @brief Function to blink led according to morse code
+ * 
+ * @param name 
+ */
 void blink_name(String name)
 {
   String morse_code = generate_morse(name);
@@ -65,6 +77,10 @@ void blink_name(String name)
   }
 }
 
+/**
+ * @brief Function to blink to symbolise dot 
+ * 
+ */
 void blink_dot()
 {
   digitalWrite(led_pin, HIGH);
@@ -73,6 +89,10 @@ void blink_dot()
   delay(one_unit);
 }
 
+/**
+ * @brief Function to blink to symbolise dash
+ * 
+ */
 void blink_dash()
 {
   digitalWrite(led_pin, HIGH);
