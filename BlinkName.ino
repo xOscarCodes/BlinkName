@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <string.h>
 
-#define led_pin 12
+#define led_pin LED_BUILTIN
 #define one_unit 1000
 #define three_units 3000
 
@@ -16,22 +16,25 @@ const dict code[]{{"a", ".-"}, {"b", "-..."}, {"c", "-.-."}, {"d", "-.."}, {"e",
 
 void setup()
 {
-  pinMode(led_pin, OUTPUT);       // Setting 12 number pin to output
-  String names = "charanpreet";   // Name you want to blink
-  blink_name(names);
-  digitalWrite(led_pin, LOW);
+  Serial.begin(9600);
+  pinMode(led_pin, OUTPUT); // Setting 12 number pin to output
 }
 
 void loop()
 {
-
+  Serial.println("Enter name: ");
+  String names = Serial.readString();
+  Serial.println(names);
+  blink_name(names);
+  digitalWrite(led_pin, LOW);
+  delay(5000);
 }
 
 /**
- * @brief Function to generate morse code of a particular name 
- * 
- * @param name 
- * @return String 
+ * @brief Function to generate morse code of a particular name
+ *
+ * @param name
+ * @return String
  */
 String generate_morse(String name)
 {
@@ -39,7 +42,7 @@ String generate_morse(String name)
 
   for (uint16_t i = 0; i < sizeof(name); i++)
   {
-    for (uint16_t j = 0; j < sizeof(code)/sizeof(dict); j++)
+    for (uint16_t j = 0; j < sizeof(code) / sizeof(dict); j++)
     {
       if (String(name[i]) == code[j].letter)
       {
@@ -53,8 +56,8 @@ String generate_morse(String name)
 
 /**
  * @brief Function to blink led according to morse code
- * 
- * @param name 
+ *
+ * @param name
  */
 void blink_name(String name)
 {
@@ -78,8 +81,8 @@ void blink_name(String name)
 }
 
 /**
- * @brief Function to blink to symbolise dot 
- * 
+ * @brief Function to blink to symbolise dot
+ *
  */
 void blink_dot()
 {
@@ -91,7 +94,7 @@ void blink_dot()
 
 /**
  * @brief Function to blink to symbolise dash
- * 
+ *
  */
 void blink_dash()
 {
