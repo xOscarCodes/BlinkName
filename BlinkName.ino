@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <string.h>
 
-#define led_pin LED_BUILTIN
+#define led_pin 12
 #define one_unit 1000
 #define three_units 3000
 
